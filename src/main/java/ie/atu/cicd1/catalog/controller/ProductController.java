@@ -9,6 +9,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
+    // Get a single product using its ID.
+    @GetMapping("/{id}")
+    public Product getById(@PathVariable Long id) {
+        return productService.getById(id);
+    }
+
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -23,6 +30,7 @@ public class ProductController {
     public Product create(Product product){
         return productService.create(product);
     }
+
 
 
 }
