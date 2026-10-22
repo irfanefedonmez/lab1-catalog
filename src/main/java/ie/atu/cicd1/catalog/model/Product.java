@@ -5,7 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import java.math.BigDecimal;
+
 
 @Entity
 @Table(name = "products")
@@ -16,6 +20,12 @@ public class Product {
     private Long id;
     private String name;
     private BigDecimal price;
+
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
 
     public Product(){}
     public Product(Long id, String name, BigDecimal price) {
@@ -32,5 +42,14 @@ public class Product {
 
     public BigDecimal getPrice() {return price;}
     public void setPrice(BigDecimal price) {this.price = price;}
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
 }
